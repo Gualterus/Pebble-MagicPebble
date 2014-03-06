@@ -57,6 +57,19 @@ void WindowsClickConfigProvider(void *context)  /* функция, внутри 
     window_single_click_subscribe(BUTTON_ID_DOWN, click); 
 }
 
+/**
+ * Same as click, parameters values does not matter.
+ * Maybe it 'ill be better to call click(NULL,NULL)?
+ */
+void accel_shake(AccelAxisType axis, int32_t direction)
+{
+    
+    text_layer_destroy(text_layer);
+    config_text_layer(5, 40, 134, 120, FONT_KEY_GOTHIC_28);
+    timer_call();
+    
+}
+
 int main(void)
 {
     window = window_create();  /* Инициализируем окно */
@@ -65,6 +78,7 @@ int main(void)
     window_stack_push(window, true);  /* открываем окно */
     config_text_layer(0, 3, 144, 168, FONT_KEY_GOTHIC_24);
     srand(time(NULL)); /* инициализируем генератор случайных чисел текущем временем */
+    accel_tap_service_subscribe(accel_shake);
     window_set_click_config_provider(window, WindowsClickConfigProvider); /* определяем функцию, в которой будут находиться подписки на кнопки */
 #if (LANG == ENG)
     text_layer_set_text(text_layer, "Magic Pebble \n \n Ask a question that you can answer \n \"yes\" or \"no\" and click button -->");  /* показываем сообщение при запуске программы */
@@ -76,3 +90,4 @@ int main(void)
     text_layer_destroy(text_layer); /* уничтожаем объекты, освобождаем ресурсы */
     window_destroy(window);  /* уничтожаем объекты, освобождаем ресурсы */
 }
+,
