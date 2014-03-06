@@ -90,4 +90,3 @@ int main(void)
     text_layer_destroy(text_layer); /* уничтожаем объекты, освобождаем ресурсы */
     window_destroy(window);  /* уничтожаем объекты, освобождаем ресурсы */
 }
-,
